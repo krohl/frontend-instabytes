@@ -6,11 +6,6 @@
   "type": "module",
   "license": "AGPL-version-3.0",
   "private": false,
-  "targets": {
-    "app": {
-      "context": "node"
-    }
-  },
   "engines": {
     "node": ">= 14.0.0",
     "npm": ">= 6.0.0"
