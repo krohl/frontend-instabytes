@@ -1,4 +1,4 @@
-let { API_URL } = process.env;
+import process from 'process'; // Importando o módulo process
 
 // Função para buscar os dados do endpoint
 export default async function fetchImages() {
