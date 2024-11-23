@@ -6,8 +6,6 @@ const captionText = document.getElementById("caption");
 const closeBtn = document.querySelector(".close");
 modal.style.display = "none";
 
-console.log(import.meta.env.API_URL);
-
 const imageGrid = document.querySelector(".image-grid");
 
 // Função para buscar e exibir os dados do endpoint
