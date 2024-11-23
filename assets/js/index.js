@@ -6,7 +6,7 @@ const captionText = document.getElementById("caption");
 const closeBtn = document.querySelector(".close");
 modal.style.display = "none";
 
-console.log(process.env.API_URL);
+console.log(import.meta.env.API_URL);
 
 const imageGrid = document.querySelector(".image-grid");
 
