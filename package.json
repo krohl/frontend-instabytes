@@ -1,8 +1,8 @@
 {
   "name": "",
+  "source": "index.html",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "type": "module",
   "license": "AGPL-version-3.0",
   "private": false,
@@ -28,6 +28,6 @@
     "test": ""
   },
   "devDependencies": {
-    "parcel": "^2.12.0"
+    "parcel": "^2.13.0"
   }
 }
