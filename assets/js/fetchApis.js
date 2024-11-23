@@ -1,5 +1,3 @@
-import process from 'node:process'; // Importando o módulo process
-
 // Função para buscar os dados do endpoint
 export default async function fetchImages() {
   try {
