@@ -1,5 +1,3 @@
-console.log(process.env.API_URL);
-
 // Função para buscar os dados do endpoint
 export default async function fetchImages() {
   try {
