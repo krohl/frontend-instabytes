@@ -1,6 +1,5 @@
 {
   "name": "",
-  "source": ["index.html", "assets/js/index.js"],
   "version": "1.0.0",
   "description": "",
   "type": "module",
@@ -24,7 +23,8 @@
   },
   "contributors": [],
   "scripts": {
-    "dev": "npx parcel --port 8000 index.html",
+    "build": "npx parcel build --public-url . index.html",
+    "start": "npx parcel --port 8000 index.html",
     "test": ""
   },
   "devDependencies": {
