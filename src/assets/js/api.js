@@ -19,7 +19,7 @@ export async function imgUpload(form) {
   const formData = new FormData(form);
 
   try {
-    const response = await fetch("http://localhost:3000/upload", {
+    const response = await fetch(API_URL + "/upload", {
       method: "POST",
       body: formData,
       headers: {
@@ -36,7 +36,7 @@ export async function profileImgUpload(form) {
   const formData = new FormData(form);
 
   try {
-    const response = await fetch("http://localhost:3000/user/profile/image", {
+    const response = await fetch(API_URL + "/user/profile/image", {
       method: "POST",
       body: formData,
       headers: {
@@ -51,7 +51,7 @@ export async function profileImgUpload(form) {
 
 export async function getProfileImg() {
   try {
-    const response = await fetch("http://localhost:3000/user/profile/image", {
+    const response = await fetch(API_URL + "/user/profile/image", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -65,7 +65,7 @@ export async function getProfileImg() {
 
 export async function deleteImage(id) {
   try {
-    const response = await fetch(`http://localhost:3000/posts/${id}`, {
+    const response = await fetch(API_URL + `/posts/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -81,7 +81,7 @@ export async function deleteImage(id) {
 export async function login(email, password) {
   try {
     const body = JSON.stringify({ email, password });
-    const response = await fetch(`http://localhost:3000/login`, {
+    const response = await fetch(API_URL + `/login`, {
       method: "POST", body: body,
       headers: { 'Content-Type': 'application/json' },
     });
