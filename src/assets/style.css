@@ -1,11 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Charm:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import '_palettes2.css';
 
 :root {
     --font-size-base: 16px;
-    --primary-color: #45474B;
-    --secondary-color: #F5F7F8;
-    --tertiary-color: #379777;
+    --primary-color: var(--primary-40);
+    --on-primary-color: rgb(255 255 255/.9);
+
+    --secondary-color: var(--secondary-50);
+    --on-secondary-color: rgb(255 255 255/.9);
+
+    --tertiary-color: var(--tertiary-60);
+
+    --background-color: var(--dark-surface);
 
     --border-radius-small: 0.25rem;
     --border-radius-medium: 0.625rem;
@@ -23,9 +30,66 @@
 
 body {
     font-family: "Montserrat", sans-serif;
-    background-color: var(--secondary-color);
+    background-color: var(--background-color);
     width: 100%;
     height: 100vh;
+}
+
+@keyframes spinner {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes spinner-white {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.spinner:before {
+    content: '';
+    box-sizing: border-box;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin-top: -10px;
+    margin-left: -10px;
+    border-radius: 50%;
+    border-top: 2px solid var(--primary-color);
+    border-right: 2px solid transparent;
+    animation: spinner .6s linear infinite;
+}
+
+.spinner-white:before {
+    content: '';
+    box-sizing: border-box;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin-top: -10px;
+    margin-left: -10px;
+    border-radius: 50%;
+    border-top: 2px solid var(--on-primary-color);
+    border-right: 2px solid transparent;
+    animation: spinner .6s linear infinite;
+}
+
+.spinner,
+.spinner-white {
+    position: relative;
+}
+
+.imgUploadSubmit {
+    display: flex;
+
+    #imgUploadSpinner {
+        left: -50%;
+    }
 }
 
 /* Navbar */
@@ -33,20 +97,21 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--secondary-color);
+    background-color: var(--dark-surface-2);
     width: 100%;
     padding: 0.6rem 1.2rem;
     border-bottom: 0.0625rem solid rgba(69, 71, 75, 0.2);
     position: fixed;
     top: 0;
     z-index: 1000;
+    box-shadow: 0 0 10px black;
 }
 
 .navbar .logo {
     font-family: "Charm", cursive;
     font-size: 2rem;
     font-weight: bold;
-    color: var(--primary-color);
+    color: var(--on-primary-color);
     font-style: italic;
     font-weight: 400;
     margin-left: 1rem;
@@ -58,7 +123,7 @@ body {
 
 .navbar .logo strong {
     font-weight: 700;
-    color: #45474b;
+    color: var(--on-primary-color);
 }
 
 .nav-links {
@@ -69,9 +134,10 @@ body {
 }
 
 /* Botão de Login */
-.login-btn {
-    background-color: black;
-    color: var(--secondary-color);
+.primary-btn {
+    width: 100%;
+    background-color: var(--primary-color);
+    color: var(--on-primary-color);
     border: none;
     padding: 0.5rem 1rem;
     border-radius: var(--border-radius-small);
@@ -79,9 +145,55 @@ body {
     transition: background-color var(--transition-fast);
 }
 
-.login-btn:hover {
-    background-color: var(--tertiary-color);
+.primary-btn:hover {
+    background-color: var(--secondary-color);
+    color: var(--on-secondary-color);
+}
+
+.secondary-btn {
+    background-color: var(--secondary-color);
+    color: var(--on-secondary-color);
+    border: none;
+    border-radius: var(--border-radius-small);
+    cursor: pointer;
+    transition: background-color var(--transition-fast);
+    max-width: 15rem;
+}
+
+.secondary-btn:hover {
+    background-color: var(--secondary-70);
+    color: var(--secondary-40);
+}
+
+.social-btn {
+    display: flex;
+    align-items: center;
+    border: none;
+    border-radius: var(--border-radius-small);
+    cursor: pointer;
+    transition: background-color var(--transition-fast);
+    height: 40px !important;
+    text-decoration: none;
+    font-weight: bold;
+    color: var(--on-primary-color);
+
+    svg {
+        margin: 0.3rem;
+        color: var(--on-primary-color);
+    }
+
+    span {
+        margin-right: 0.5rem;
+    }
+}
+
+.social-btn:hover {
+    background-color: var(--dark-surface-1);
     color: var(--secondary-color);
+
+    svg {
+        color: var(--secondary-color);
+    }
 }
 
 /* Link de Cadastro */
@@ -102,35 +214,83 @@ body {
     max-width: 56.25rem;
     margin: 3.5rem auto;
     padding: 1.5rem;
-    background-color: var(--secondary-color);
+    background-color: var(--dark-surface-1);
+    box-shadow: 0 0 10px black;
+    display: block;
 }
 
 .profile-header {
     display: flex;
     align-items: center;
     padding-bottom: 1.25rem;
-    border-bottom: 1px solid var(--primary-color);
+    border-bottom: 1px solid var(--dark-surface-4);
+}
+
+.profile-pic-container {
+    display: flex;
+    align-items: center;
+    border-radius: var(--border-radius-circle);
+    border: 0.2rem solid var(--primary-color);
+    min-width: 7.5rem;
+    height: 7.5rem;
+    margin-right: 1.25rem;
+    background-color: black;
 }
 
 .profile-pic {
-    width: 7.5rem;
-    height: 7.5rem;
+    width: 7.1rem;
+    height: 7.1rem;
     border-radius: var(--border-radius-circle);
-    margin-right: 1.25rem;
-    border: 3px solid var(--primary-color);
+    cursor: pointer;
+}
+
+.profile-pic-default {
+    font-size: 7.1rem !important;
+    font-weight: 900 !important;
+    border-radius: var(--border-radius-circle);
+    color: var(--dark-surface-4);
+    cursor: pointer;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.profile-pic:hover, .profile-pic-default:hover {
+    opacity: 0.5;
+}
+
+.profile-pic-edit {
+    color: var(--primary-color);
+    position: relative;
+    left: calc(-7.3rem / 2 - 12px);
+    pointer-events:none;
+    display: none !important;
+}
+
+.profile-info {
+    width: 100%;
 }
 
 .profile-info h1 {
     font-size: 1.5rem;
-    color: var(--primary-color);
+    color: var(--on-primary-color);
     margin-bottom: 0.5rem;
     font-weight: 600;
 }
 
 .profile-info p {
     font-size: 1rem;
-    color: var(--primary-color);
+    color: var(--on-primary-color);
     font-weight: 500;
+}
+
+.profile-socials {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
 }
 
 /* Grid de Imagens */
@@ -145,12 +305,13 @@ body {
     width: 100%;
     height: 16rem;
     object-fit: cover;
-    transition: transform var(--transition-fast) ease, filter var(--transition-fast) ease;
+    transition: transform var(--transition-fast) ease, filter var(--transition-fast) ease, box-shadow var(--transition-fast) ease;
 }
 
 .image-grid img:hover {
     transform: scale(1.01);
     filter: brightness(0.85);
+    box-shadow: 0px 0px 15px var(--primary-color);
 }
 
 /* Modal */
@@ -163,11 +324,22 @@ body {
     width: 100%;
     height: 100%;
     background-color: rgba(1, 3, 4, 0.66);
-    display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: top;
     padding: 1.25rem;
     text-align: center;
+}
+
+.detail-modal {
+    display: flex;
+    gap: 1rem;
+}
+
+.side-options {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-top: 2rem;
 }
 
 .modal-content {
@@ -179,8 +351,8 @@ body {
 }
 
 #caption {
-    background-color: var(--secondary-color);
-    color: var(--primary-color);
+    background-color: var(--background-color);
+    color: var(--on-primary-color);
     padding: 1.8rem;
     border-radius: 0.3125rem;
     max-width: 69vh;
@@ -190,10 +362,50 @@ body {
     font-weight: 500;
 }
 
+#uploadImgForm,
+#authForm {
+    background-color: var(--background-color);
+    color: var(--on-primary-color);
+    padding: 1.8rem;
+    padding-top: 0.5rem;
+    border-radius: 0.3125rem;
+    max-width: 69vh;
+    margin: 0 auto;
+    box-sizing: border-box;
+    line-height: 1.5;
+    font-weight: 500;
+}
+
+#imgUpload,
+#auth {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.formText {
+    background-color: var(--dark-surface-1);
+    border: 2px solid var(--dark-surface-2);
+    border-radius: 1rem;
+    color: var(--on-primary-color);
+    padding: 0.25rem;
+    caret-color: var(--on-primary-color);
+}
+
+.uploadImgClose,
+.authClose {
+    color: var(--primary-color);
+    cursor: pointer;
+    display: flex;
+    justify-content: flex-end;
+}
+
+textarea:focus,
+input:focus {
+    outline: none;
+}
+
 .close {
-    position: absolute;
-    top: 2.5rem;
-    right: 36rem;
     color: var(--secondary-color);
     font-size: 3rem;
     font-weight: bold;
@@ -203,6 +415,58 @@ body {
 .close:hover,
 .close:focus {
     color: var(--secondary-color);
+}
+
+.del-btn {
+    color: var(--secondary-color);
+    font-size: 3rem;
+    font-weight: bold;
+    cursor: pointer;
+    height: 24px;
+}
+
+.del-btn:hover,
+.del-btn:focus {
+    color: var(--secondary-color);
+}
+
+.add-btn-container {
+    position: fixed;
+    height: 10%;
+    width: 5%;
+    bottom: 0;
+    left: 49%;
+
+    .add-btn {
+        transition: bottom 0.5s ease 0s;
+    }
+}
+
+.add-btn-container:hover {
+    .add-btn {
+        bottom: 5%;
+    }
+}
+
+.add-btn {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    left: 50%;
+    bottom: -5%;
+    color: var(--background-color);
+    background-color: var(--primary-color);
+    border-radius: var(--border-radius-circle);
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 0 10px -5 black;
+}
+
+input[type="file"] {
+    display: none;
 }
 
 /* Responsividade */
@@ -217,10 +481,20 @@ body {
         font-size: 0.75rem;
     }
 
+    .profile-pic-container {
+        display: flex;
+        align-items: center;
+        border-radius: var(--border-radius-circle);
+        border: 0.2rem solid var(--primary-color);
+        min-width: 4.4rem;
+        height: 4.4rem;
+        margin-right: 1rem;
+        background-color: black;
+    }
+
     .profile-pic {
         width: 4rem;
         height: 4rem;
-        margin-right: 1rem;
     }
 
     .profile-info h1 {
@@ -295,7 +569,6 @@ body {
 
     .profile-info p {
         font-size: 0.75rem;
-        color: var(--primary-color);
         font-weight: 500;
     }
 }
