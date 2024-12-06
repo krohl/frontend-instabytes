@@ -1,5 +1,4 @@
-import { profileImgUpload, getProfileImg } from "./api.js";
-import jwt from "jsonwebtoken";
+import { getProfileInfo, profileImgUpload } from "./api.js";
 
 export async function uploadProfileImg() {
     const uploadProfileImgModal = document.getElementById("uploadProfileImgModal");
@@ -37,28 +36,25 @@ export async function uploadProfileImg() {
             uploadProfileImgSpinner.style.display = "none";
             uploadProfileImgModal.style.display = "none";
             uploadProfileImgInputSubmit.value = 'Enviar';
-            await setProfileImgOrDefault();
+            await setProfileInfo();
         });
     });
 }
 
-export async function setProfileImgOrDefault() {
-    const url = await getProfileImg();
+export async function setProfileInfo() {
+    const info = await getProfileInfo();
     const profilePic = document.getElementById("profile-pic");
     const profilePicDefault = document.getElementById("profilePicDefault");
+    const nickname = document.getElementById("nickname");
 
-    if (url.url) {
+    nickname.innerHTML = info.nickname;
+
+    if (info.url) {
         profilePicDefault.style.display = "none";
-        profilePic.src = url.url;
+        profilePic.src = info.url;
         profilePic.style.display = "block";
     } else {
         profilePicDefault.style.display = "block";
         profilePic.style.display = "none";
     }
-}
-
-export async function setProfileNickname() {
-    const nickname = document.getElementById("nickname");
-    const decoded = jwt.decode(localStorage.getItem("token"));
-    nickname.innerHTML = decoded.nickname;
 }

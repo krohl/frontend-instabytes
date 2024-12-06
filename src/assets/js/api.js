@@ -49,9 +49,9 @@ export async function profileImgUpload(form) {
   }
 }
 
-export async function getProfileImg() {
+export async function getProfileInfo() {
   try {
-    const response = await fetch(API_URL + "/user/profile/image", {
+    const response = await fetch(API_URL + "/user/profile/info", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("token")}`,

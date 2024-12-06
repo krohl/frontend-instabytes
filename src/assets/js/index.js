@@ -1,5 +1,5 @@
 import { fetchImages, deleteImage } from "./api";
-import { uploadProfileImg, setProfileImgOrDefault, setProfileNickname } from "./uploadProfileImg";
+import { uploadProfileImg, setProfileInfo } from "./uploadProfileImg";
 
 const modal = document.getElementById("modal");
 const modalImg = document.getElementById("modal-img");
@@ -147,13 +147,11 @@ window.addEventListener("click", function (event) {
 // Chamar a função para buscar e exibir as imagens ao carregar a página
 document.addEventListener("DOMContentLoaded", function () {
   displayImages();
-  setProfileImgOrDefault();
-  setProfileNickname();
+  setProfileInfo();
 });
 document.addEventListener('login', function () {
   displayImages();
-  setProfileImgOrDefault();
-  setProfileNickname();
+  setProfileInfo();
 });
 
 export function imgSubmit(event) {
